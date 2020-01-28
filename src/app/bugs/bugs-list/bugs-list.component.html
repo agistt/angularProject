@@ -1,0 +1,46 @@
+<div>
+  <button class="button" [routerLink]="['/addBugToPostman']">Add Bug</button>
+<table mat-table [dataSource]="dataSource" matSort class="mat-table" >
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+    <td class="title-cell"
+              *matCellDef="let bug">{{bug.title}}</td>
+</ng-container>
+
+<ng-container matColumnDef="priority">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+  <td class="priority-cell"
+            *matCellDef="let bug">{{bug.priority}}</td>
+</ng-container>
+
+<ng-container matColumnDef="reporter">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Reporter</th>
+  <td class="reporter-cell"
+            *matCellDef="let bug">{{bug.reporter}}</td>
+</ng-container>
+
+<ng-container matColumnDef="dateCreated">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Created</th>
+  <td class="dateCreated-cell"
+            *matCellDef="let bug">{{bug.createdAt | date}}</td>
+</ng-container>
+
+<ng-container matColumnDef="status">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+  <td class="status-cell"
+            *matCellDef="let bug">{{bug.status}}</td>
+</ng-container>
+
+<ng-container matColumnDef="edit">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+  <td class="status-cell"
+            *matCellDef="let bug"><button class="button" (click)="editBug(bug.id)" >Edit</button></td>
+</ng-container>
+
+
+<tr mat-header-row *matHeaderRowDef="columns"></tr>
+<tr mat-row *matRowDef="let row; columns: columns;"></tr>
+</table>
+
+</div>
