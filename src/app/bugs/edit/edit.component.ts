@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditComponent implements OnInit {
 
-  registerForm: FormGroup;
+  public form: FormGroup;
 
   bug: any;
   title: string;
@@ -26,22 +26,30 @@ export class EditComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-
-    this.registerForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      priority: ['', Validators.required],
-      reporter: ['', Validators.required],
-      description: ['', Validators.required],
-      status: ['', Validators.required],
-  });
-
-    this.postmanService.getBugById(this.activatedRoute.snapshot.params['id']).subscribe(data => {
-      this.bug = data;
-      this.registerForm.patchValue(this.bug);
+    this.postmanService.getBugById(this.activatedRoute.snapshot.params['id'])
+    .subscribe(data => {
+      this.bug = data,
+      this.form = this.formBuilder.group({
+        title: [this.bug.title, Validators.required],
+        priority: [this.bug.priority, Validators.required],
+        reporter: [this.bug.reporter, Validators.required],
+        description: [this.bug.description, Validators.required],
+        status: [this.bug.status, Validators.required],
+      });
     });
-
-
-
+     
   }
 
+  ngAfterViewInit(): void {}
+
+  onSubmit() {
+    this.postmanService.updateBug(this.form.value).subscribe();
+    if (this.form.invalid) {
+        return;
+    }
+    else {
+      this.postmanService.updateBug(this.form.value).subscribe();
+    }
+  }
+  
 }

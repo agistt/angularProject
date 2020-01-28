@@ -32,12 +32,12 @@ export class AddComponentComponent implements OnInit {
     });
   }
   onSubmit() {
-    this.service.addBugToPostman(this.form.value).subscribe();
+    //this.service.addBug(this.form.value).subscribe();
     if (this.form.invalid) {
         return;
     }
     else {
-      this.service.addBugToPostman(this.form.value);
+      this.service.addBug(this.form.value).subscribe();
     }
 
 }

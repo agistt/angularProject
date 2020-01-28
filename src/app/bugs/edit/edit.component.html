@@ -22,10 +22,10 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="createdAt">createdAt</label>
-        <input type="text" formControlName="createdAt" class="form-control" [(ngModel)]="createdAt" [ngClass]="{ 'is-invalid': form.controls.createdAt.errors }" />
-        <div *ngIf="form.controls.createdAt.errors" class="invalid-feedback">
-            <div *ngIf="form.controls.createdAt.errors.required">Created date is required</div>
+        <label for="description">Description</label>
+        <input type="text" formControlName="description" class="form-control" [(ngModel)]="description" [ngClass]="{ 'is-invalid': form.controls.description.errors }" />
+        <div *ngIf="form.controls.description.errors" class="invalid-feedback">
+            <div *ngIf="form.controls.description.errors.required">Created date is required</div>
         </div>
     </div>
     <div class="form-group">

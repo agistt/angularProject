@@ -34,7 +34,6 @@ export class BugsListComponent implements OnInit {
   }
 
   editBug(id) {
-
     this.router.navigate(['/edit', id]);
   }
 

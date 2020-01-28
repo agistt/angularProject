@@ -18,12 +18,16 @@ export class PostmanCallService {
     return this.http.get<Bug[]>(this.getBugsUrl);
   }
 
-  addBugToPostman(bug: any[]) {
+  addBug(bug: any[]) {
     return this.http.post(this.getBugsUrl, bug);
   }
 
   getBugById(id: string) {
-return this.http.get('https://bug-report-system-server.herokuapp.com/bugs/' + id);
+    return this.http.get('https://bug-report-system-server.herokuapp.com/bugs/' + id);
+  }
+
+  updateBug(bug: any[]){
+    return this.http.put(this.getBugsUrl, bug);
   }
 
 
