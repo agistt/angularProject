@@ -8,12 +8,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
-import { AddComponentComponent } from './add-component/add-component.component';
-import { EditComponent } from './edit/edit.component';
+import { UpdateComponent } from './bugs-list/update/update.component';
 
 
 @NgModule({
-  declarations: [BugsListComponent, AddComponentComponent, EditComponent],
+  declarations: [BugsListComponent],
 
   imports: [
     CommonModule,

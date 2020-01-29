@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddComponentComponent } from './bugs/add-component/add-component.component';
+import { UpdateComponent } from './bugs/bugs-list/update/update.component';
 import { BugsListComponent } from './bugs/bugs-list/bugs-list.component';
-import { EditComponent } from './bugs/edit/edit.component';
 
 
 const routes: Routes = [
-  { path: 'addBugToPostman', component: AddComponentComponent},
+  { path: 'addBugToPostman', component: UpdateComponent},
   { path: '', component: BugsListComponent},
-  { path: 'edit/:id', component: EditComponent}
+  { path: 'edit/:id', component: UpdateComponent}
 ];
 
 @NgModule({

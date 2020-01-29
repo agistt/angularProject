@@ -9,10 +9,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { UpdateComponent } from './bugs/bugs-list/update/update.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,

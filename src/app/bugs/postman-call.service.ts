@@ -26,8 +26,8 @@ export class PostmanCallService {
     return this.http.get('https://bug-report-system-server.herokuapp.com/bugs/' + id);
   }
 
-  updateBug(bug: any[]){
-    return this.http.put(this.getBugsUrl, bug);
+  updateBug(bug: any[], id: string) {
+    return this.http.put('https://bug-report-system-server.herokuapp.com/bugs/' + id , bug);
   }
 
 
