@@ -5,7 +5,7 @@ import { BugsListComponent } from './bugs/bugs-list/bugs-list.component';
 
 
 const routes: Routes = [
-  { path: 'addBugToPostman', component: UpdateComponent},
+  { path: 'addBug', component: UpdateComponent},
   { path: '', component: BugsListComponent},
   { path: 'edit/:id', component: UpdateComponent}
 ];

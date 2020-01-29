@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { PostmanCallService } from '../../postman-call.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: "app-update",
@@ -13,15 +13,16 @@ export class UpdateComponent implements OnInit {
 
   bug: any;
   title: string;
-  priority: string;
-  reporter: string;
-  status: string;
+  priority: string[] = ['Minor', 'Major', 'Critical'];
+  reporter: string[] = ['QA', 'PO', 'DEV'];
+  status: string[] =  ['Ready for test ', 'Done', 'Rejeted'];;
   description: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private service: PostmanCallService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router : Router
   ) {}
 
   ngOnInit() {
@@ -63,5 +64,7 @@ export class UpdateComponent implements OnInit {
         this.service.updateBug(this.form.value, id).subscribe();
       }
     }
+    this.router.navigate(['/']);
   }
+
 }
