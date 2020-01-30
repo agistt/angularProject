@@ -9,6 +9,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { UpdateComponent } from './bugs-list/update/update.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -27,13 +28,14 @@ import { UpdateComponent } from './bugs-list/update/update.component';
     MatTableModule,
     MatSortModule,
     BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   exports: [
     BugsListComponent,
     MatSortModule,
     MatTableModule,
     MatSortModule,
-    MatSortModule,
+    MatPaginatorModule
   ],
 })
 export class BugsModule { }

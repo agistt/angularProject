@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { UpdateComponent } from './bugs/bugs-list/update/update.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,12 @@ import { UpdateComponent } from './bugs/bugs-list/update/update.component';
     HttpClientModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
   ],
   exports: [
-    MatSortModule,
     MatTableModule,
     MatSortModule,
-    MatSortModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

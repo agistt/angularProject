@@ -4,6 +4,8 @@ import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import { Bug } from 'src/app/model/bug';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-bugs-list',
@@ -13,11 +15,12 @@ import { Router } from '@angular/router';
 export class BugsListComponent implements OnInit {
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
 
   public bugsData: Bug[] = [];
-  public dataSource = new MatTableDataSource<Bug>();
-  public columns = ["title", "priority","reporter","dateCreated","status","edit"];
+  public dummyData = new MatTableDataSource<Bug>();
+  public columns = ["title", "priority","reporter","dateCreated","status","edit","delete"];
 
   constructor(public PostmanService: PostmanCallService,
     private router : Router) { }
@@ -25,16 +28,23 @@ export class BugsListComponent implements OnInit {
   ngOnInit() {
     this.PostmanService.getBugsList().subscribe(data => {
       this.bugsData = data;
-      this.dataSource.data = data;
+      this.dummyData.data = data;
+      this.dummyData.paginator = this.paginator;
     });
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
+    this.dummyData.sort = this.sort;
+    //this.dummyData.paginator = this.paginator;
   }
 
   editBug(id) {
     this.router.navigate(['/edit', id]);
+  }
+  deleteBug(id: string): void {
+    const actionToInvoke = this.PostmanService.deleteBug(id);
+  actionToInvoke.pipe(tap(() => this.ngOnInit())).subscribe();
+  
   }
 
 }

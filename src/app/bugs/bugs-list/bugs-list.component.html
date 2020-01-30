@@ -1,6 +1,6 @@
 <div>
   <button class="button" [routerLink]="['/addBug']">Add Bug</button>
-<table mat-table [dataSource]="dataSource" matSort class="mat-table" >
+<table mat-table [dataSource]="dummyData" matSort class="mat-table" >
 
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
@@ -38,9 +38,17 @@
             *matCellDef="let bug"><button class="button" (click)="editBug(bug.id)" >Edit</button></td>
 </ng-container>
 
+<ng-container matColumnDef="delete">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+  <td class="status-cell"
+            *matCellDef="let bug"><button class="button" (click)="deleteBug(bug.id)" >Delete</button></td>
+</ng-container>
+
 
 <tr mat-header-row *matHeaderRowDef="columns"></tr>
 <tr mat-row *matRowDef="let row; columns: columns;"></tr>
 </table>
-
+<mat-paginator [length]="100"
+[pageSize]="10"[pageSizeOptions]="[5, 10, 15]" 
+showFirstLastButtons></mat-paginator>
 </div>

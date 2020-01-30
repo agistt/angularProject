@@ -1,6 +1,6 @@
 table {
   border-collapse: collapse;
-  width: 80%;
+  width: 60%;
 }
 
 td {
@@ -14,8 +14,6 @@ tr:nth-child(odd){background-color: #adcfe6}
 th {
   background-color: rgb(17, 85, 141);
   color: white;
-  text-align: center !important;
-
 }
 .button {
   background-color: rgb(111, 178, 233);
@@ -29,6 +27,11 @@ th {
   margin: 4px 2px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.mat-paginator {
+  background-color: rgb(17, 85, 141);
+  width: 60%;
 }
 
 

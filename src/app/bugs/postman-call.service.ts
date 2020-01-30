@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Bug } from '../model/bug';
 
@@ -15,7 +15,9 @@ export class PostmanCallService {
   constructor(private http: HttpClient) { }
 
   getBugsList(): Observable<Bug[]> {
-    return this.http.get<Bug[]>(this.getBugsUrl);
+    const params = new HttpParams()
+       .set('size', '100');
+    return this.http.get<Bug[]>(this.getBugsUrl,{params});
   }
 
   addBug(bug: any[]) {
@@ -28,6 +30,10 @@ export class PostmanCallService {
 
   updateBug(bug: any[], id: string) {
     return this.http.put('https://bug-report-system-server.herokuapp.com/bugs/' + id , bug);
+  }
+
+  deleteBug(id: string) {
+    return this.http.delete('https://bug-report-system-server.herokuapp.com/bugs/' + id);
   }
 
 
