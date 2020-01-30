@@ -12,14 +12,14 @@
       <label for="description">Description</label>
       <input type="text" formControlName="description" class="form-control"  [ngClass]="{ 'is-invalid': form.controls.description.errors }" />
       <div *ngIf="form.controls.description.errors" class="invalid-feedback">
-          <div *ngIf="form.controls.description.errors.required">Priority is required</div>
+          <div *ngIf="form.controls.description.errors.required">Description is required</div>
       </div>
   </div>
     <div class="form-group">
         <label for="priority">Priority</label>
         <select formControlName="priority" class="form-control" [ngClass]="{ 'is-invalid': form.controls.priority.errors }" >
-            <option *ngFor="let x of priority;" [value]="priority">
-                {{x}}
+            <option *ngFor="let x of priority;" [value]="x.id">
+                {{x.name}}
               </option>
         </select>
         <div *ngIf="form.controls.priority.errors" class="invalid-feedback">
@@ -29,7 +29,7 @@
     <div class="form-group">
         <label for="reporter">Reporter</label>
         <select formControlName="reporter" class="form-control" [ngClass]="{ 'is-invalid': form.controls.reporter.errors }" >
-            <option *ngFor="let x of reporter;" [value]="reporter">
+            <option *ngFor="let x of reporter;" [value]="x">
                 {{x}}
               </option>
         </select>
@@ -40,7 +40,7 @@
     <div class="form-group">
         <label for="status">Status</label>
         <select formControlName="status" class="form-control" [ngClass]="{ 'is-invalid': form.controls.status.errors }">
-            <option *ngFor="let x of status;" [value]="status">
+            <option *ngFor="let x of status;" [value]="x">
                 {{x}}
               </option>
         </select>
@@ -48,6 +48,20 @@
             <div *ngIf="form.controls.status.errors.required">Status is required</div>
         </div>
     </div>
+
+
+    <div *ngFor="let comment of form.get('comments').controls" [formGroup]="comment">
+      <div class="form-group">
+        <label for="comments">Reporter</label>
+        <input type="text" formControlName="reporter" class="form-control"/>
+      </div>
+
+      <div class="form-group">
+        <label for="comments">Description</label>
+        <input type="text" formControlName="description" class="form-control"/>
+      </div>
+    </div>
+
     <div class="form-group">
         <button [disabled]="loading" type="submit" class="button">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
@@ -55,5 +69,9 @@
         </button>
         <button routerLink="/" class="button">Cancel</button>
     </div>
+
+    <pre>
+      {{form.value | json}}
+    </pre>
 </form>
 
