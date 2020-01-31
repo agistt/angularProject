@@ -16,7 +16,7 @@ export class PostmanCallService {
 
   getBugsList(): Observable<Bug[]> {
     const params = new HttpParams()
-       .set('size', '100');
+       .set('size', '10');
     return this.http.get<Bug[]>(this.getBugsUrl,{params});
   }
 
@@ -34,6 +34,18 @@ export class PostmanCallService {
 
   deleteBug(id: string) {
     return this.http.delete('https://bug-report-system-server.herokuapp.com/bugs/' + id);
+  }
+
+  getSorted(sortTitle: string, sortType: string) {
+    const params = new HttpParams()
+       .set('sort', sortTitle+","+sortType);
+    return this.http.get<Bug[]>(this.getBugsUrl, {params});
+  }
+
+  getPaginate(page: number) {
+    const params = new HttpParams()
+       .set('page', page.toString());
+    return this.http.get<Bug[]>(this.getBugsUrl, {params});
   }
 
 

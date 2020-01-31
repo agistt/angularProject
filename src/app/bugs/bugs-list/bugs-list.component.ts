@@ -17,7 +17,8 @@ export class BugsListComponent implements OnInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-
+  public sortType = 'asc';
+  public page: number = 0;
   public bugsData: Bug[] = [];
   public dummyData = new MatTableDataSource<Bug>();
   public columns = ["title", "priority","reporter","dateCreated","status","edit","delete"];
@@ -35,7 +36,7 @@ export class BugsListComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.dummyData.sort = this.sort;
-    //this.dummyData.paginator = this.paginator;
+    // this.dummyData.paginator = this.paginator;
   }
 
   editBug(id) {
@@ -44,7 +45,35 @@ export class BugsListComponent implements OnInit {
   deleteBug(id: string): void {
     const actionToInvoke = this.PostmanService.deleteBug(id);
   actionToInvoke.pipe(tap(() => this.ngOnInit())).subscribe();
-  
+
+  }
+
+  sortList(sortType: string, sortTitle: string) {
+    this.sortType = sortType === 'asc' ? 'desc' : 'asc';
+
+    this.PostmanService.getSorted(sortTitle, this.sortType).subscribe(
+      data => {this.bugsData = data,
+        this.dummyData.data = data}
+    );
+  }
+
+  paginateNext() {
+    if (this.page < 5){
+    this.page ++;
+    this.PostmanService.getPaginate(this.page).subscribe(
+      data => {this.bugsData = data,
+        this.dummyData.data = data}
+    );
+      }
+  }
+  paginatePrev() {
+    if (this.page > 0){
+    this.page --;
+    this.PostmanService.getPaginate(this.page).subscribe(
+      data => {this.bugsData = data,
+        this.dummyData.data = data}
+    );
+      }
   }
 
 }

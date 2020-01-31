@@ -3,43 +3,43 @@
 <table mat-table [dataSource]="dummyData" matSort class="mat-table" >
 
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+    <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'title')">Title</th>
     <td class="title-cell"
-              *matCellDef="let bug">{{bug.title}}</td>
+              *matCellDef="let bug" >{{bug.title}}</td>
 </ng-container>
 
 <ng-container matColumnDef="priority">
-  <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+  <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'priority')" >Priority</th>
   <td class="priority-cell"
             *matCellDef="let bug">{{bug.priority}}</td>
 </ng-container>
 
 <ng-container matColumnDef="reporter">
-  <th mat-header-cell *matHeaderCellDef mat-sort-header>Reporter</th>
+  <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'reporter')">Reporter</th>
   <td class="reporter-cell"
             *matCellDef="let bug">{{bug.reporter}}</td>
 </ng-container>
 
 <ng-container matColumnDef="dateCreated">
-  <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Created</th>
+  <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'dateCreated')">Date Created</th>
   <td class="dateCreated-cell"
             *matCellDef="let bug">{{bug.createdAt | date}}</td>
 </ng-container>
 
 <ng-container matColumnDef="status">
-  <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+  <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'status')">Status</th>
   <td class="status-cell"
             *matCellDef="let bug">{{bug.status}}</td>
 </ng-container>
 
 <ng-container matColumnDef="edit">
-  <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+  <th mat-header-cell *matHeaderCellDef >Edit</th>
   <td class="status-cell"
             *matCellDef="let bug"><button class="button" (click)="editBug(bug.id)" >Edit</button></td>
 </ng-container>
 
 <ng-container matColumnDef="delete">
-  <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+  <th mat-header-cell *matHeaderCellDef >Delete</th>
   <td class="status-cell"
             *matCellDef="let bug"><button class="button" (click)="deleteBug(bug.id)" >Delete</button></td>
 </ng-container>
@@ -47,8 +47,9 @@
 
 <tr mat-header-row *matHeaderRowDef="columns"></tr>
 <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+
 </table>
-<mat-paginator [length]="100"
-[pageSize]="10"[pageSizeOptions]="[5, 10, 15]" 
-showFirstLastButtons></mat-paginator>
+<button (click)="paginatePrev()" > prev </button>
+<button (click)="paginateNext()" > next </button>
+
 </div>
