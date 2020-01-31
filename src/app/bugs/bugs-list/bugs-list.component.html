@@ -1,55 +1,66 @@
 <div>
-  <button class="button" [routerLink]="['/addBug']">Add Bug</button>
-<table mat-table [dataSource]="dummyData" matSort class="mat-table" >
+  <div class="row py-2">
+    <button mat-raised-button color="accent" [routerLink]="['/addBug']">Add Bug</button>
+  </div>
 
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'title')">Title</th>
-    <td class="title-cell"
-              *matCellDef="let bug" >{{bug.title}}</td>
-</ng-container>
+  <div class="row py-2">
+    <table mat-table [dataSource]="dummyData" matSort class="mat-elevation-z8">
 
-<ng-container matColumnDef="priority">
-  <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'priority')" >Priority</th>
-  <td class="priority-cell"
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'title')">Title</th>
+        <td class="title-cell"
+            *matCellDef="let bug">{{bug.title}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'priority')">Priority</th>
+        <td class="priority-cell"
             *matCellDef="let bug">{{bug.priority}}</td>
-</ng-container>
+      </ng-container>
 
-<ng-container matColumnDef="reporter">
-  <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'reporter')">Reporter</th>
-  <td class="reporter-cell"
+      <ng-container matColumnDef="reporter">
+        <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'reporter')">Reporter</th>
+        <td class="reporter-cell"
             *matCellDef="let bug">{{bug.reporter}}</td>
-</ng-container>
+      </ng-container>
 
-<ng-container matColumnDef="dateCreated">
-  <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'dateCreated')">Date Created</th>
-  <td class="dateCreated-cell"
+      <ng-container matColumnDef="dateCreated">
+        <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'dateCreated')">Date Created</th>
+        <td class="dateCreated-cell"
             *matCellDef="let bug">{{bug.createdAt | date}}</td>
-</ng-container>
+      </ng-container>
 
-<ng-container matColumnDef="status">
-  <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'status')">Status</th>
-  <td class="status-cell"
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef (click)="sortList(sortType, 'status')">Status</th>
+        <td class="status-cell"
             *matCellDef="let bug">{{bug.status}}</td>
-</ng-container>
+      </ng-container>
 
-<ng-container matColumnDef="edit">
-  <th mat-header-cell *matHeaderCellDef >Edit</th>
-  <td class="status-cell"
-            *matCellDef="let bug"><button class="button" (click)="editBug(bug.id)" >Edit</button></td>
-</ng-container>
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td class="status-cell"
+            *matCellDef="let bug">
+          <button mat-raised-button color="blue" (click)="editBug(bug.id)">Edit</button>
+        </td>
+      </ng-container>
 
-<ng-container matColumnDef="delete">
-  <th mat-header-cell *matHeaderCellDef >Delete</th>
-  <td class="status-cell"
-            *matCellDef="let bug"><button class="button" (click)="deleteBug(bug.id)" >Delete</button></td>
-</ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td class="status-cell"
+            *matCellDef="let bug">
+          <button mat-raised-button color="basic" (click)="deleteBug(bug.id)">Delete</button>
+        </td>
+      </ng-container>
 
 
-<tr mat-header-row *matHeaderRowDef="columns"></tr>
-<tr mat-row *matRowDef="let row; columns: columns;"></tr>
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
 
-</table>
-<button (click)="paginatePrev()" > prev </button>
-<button (click)="paginateNext()" > next </button>
+    </table>
+  </div>
 
+  <div class="row py-2">
+    <button class="mx-3" mat-raised-button (click)="paginatePrev()" [disabled]="page===0"> prev</button>
+    <button class="mx-3" mat-raised-button color="basic" (click)="paginateNext()" [disabled]="dummyData.data.length < (page - 1) * 10" > next</button>
+  </div>
 </div>

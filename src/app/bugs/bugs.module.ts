@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { UpdateComponent } from './bugs-list/update/update.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatSortModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonModule
   ],
   exports: [
     BugsListComponent,
